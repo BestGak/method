@@ -16,7 +16,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	animation-duration: .5s;
+	animation-duration: 1.5s;
 	 animation-fill-mode: forwards;
 	 position: fixed;
 	 cursor: pointer;
@@ -33,8 +33,8 @@
 	z-index: 1;
 	max-width: 178px;
 	width: 100%;
-	animation-duration: 1s;
-	 animation-fill-mode: forwards;
+	animation-duration: .8s;
+	animation-fill-mode: forwards;
 }
 
 .white-circle{

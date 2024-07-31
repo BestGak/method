@@ -250,8 +250,8 @@ section.section {
   display: flex;
   align-items: center;
   justify-content: center;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
   position: fixed;
@@ -269,8 +269,8 @@ section.section {
   z-index: 1;
   max-width: 178px;
   width: 100%;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
@@ -374,7 +374,13 @@ section.section {
           animation-duration: 1s;
   margin-left: auto;
 }
-.fixed-header-nav .burger {
+.home .burger {
+  opacity: 0;
+}
+.scroll-header .burger {
+  opacity: 0;
+}
+.scroll-header.fixed-header-nav .burger {
   opacity: 1;
 }
 .burger span {
@@ -434,29 +440,44 @@ section.section {
   align-items: start;
   justify-content: center;
 }
+@media screen and (max-width: 1023px) {
+  .header-nav {
+    align-items: center;
+  }
+}
 .header-nav nav ul {
   display: flex;
   flex-direction: column;
-  gap: 68px;
+  gap: 0;
   text-align: center;
   align-items: center;
 }
-.header-nav nav li .header__socials {
+@media screen and (max-width: 1023px) {
+  .header-nav nav ul {
+    gap: 0;
+  }
+}
+@media screen and (max-width: 767px) {
+  .header-nav nav ul {
+    gap: 0;
+  }
+}
+.header-nav nav ul li .header__socials {
   display: flex;
   gap: 30px;
   align-items: center;
   justify-content: center;
 }
-.header-nav nav li .header__socialssvg {
+.header-nav nav ul li .header__socialssvg {
   max-width: 86px;
   max-height: 86px;
   width: 100%;
   height: 100%;
 }
-.header-nav nav li .header__socials a:after {
+.header-nav nav ul li .header__socials a:after {
   content: none;
 }
-.header-nav nav li a {
+.header-nav nav ul li a {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -469,17 +490,27 @@ section.section {
   color: #1F305E;
   transition: 0.3s ease-in-out;
 }
-.header-nav nav li a:after {
+@media screen and (max-width: 1023px) {
+  .header-nav nav ul li a {
+    font-size: 45px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .header-nav nav ul li a {
+    font-size: 26px;
+  }
+}
+.header-nav nav ul li a:after {
   content: "";
   width: 0%;
   background-color: #1F305E;
   height: 4px;
   transition: 0.3s ease-in-out;
 }
-.header-nav nav li a:hover {
+.header-nav nav ul li a:hover {
   color: #00E600;
 }
-.header-nav nav li a:hover:after {
+.header-nav nav ul li a:hover:after {
   width: 100%;
 }
 
@@ -517,7 +548,7 @@ section.section {
   }
 }
 .main {
-  height: calc(100vh - 98px);
+  height: 100vh;
   width: 100%;
 }
 
@@ -534,6 +565,11 @@ section.section {
 .main__container img {
   width: 25%;
 }
+@media screen and (max-width: 640px) {
+  .main__container img {
+    width: 45%;
+  }
+}
 .main__container p {
   font-size: 24px;
   font-style: normal;
@@ -542,6 +578,7 @@ section.section {
   color: #00E600;
 }
 .main__container .down-arrow {
+  cursor: pointer;
   position: absolute;
   bottom: 60px;
   width: 46px;
@@ -550,16 +587,32 @@ section.section {
 
 .animate-logo {
   max-width: 531px;
+  transition: all 0.5s;
   width: 100%;
 }
 @media screen and (max-width: 767px) {
-  .animate-logo svg {
-    max-width: 40%;
+  .animate-logo svg:nth-of-type(1) {
+    width: 24%;
+  }
+  .animate-logo svg:nth-of-type(2) {
+    width: 15%;
+  }
+  .animate-logo svg:nth-of-type(3) {
+    width: 9.8%;
+  }
+  .animate-logo svg:nth-of-type(4) {
+    width: 15%;
+  }
+  .animate-logo svg:nth-of-type(5) {
+    width: 17%;
+  }
+  .animate-logo svg:nth-of-type(6) {
+    width: 16%;
   }
 }
 .animate-logo svg:not([class]) {
-  -webkit-animation-duration: 0.8s;
-          animation-duration: 0.8s;
+  -webkit-animation-duration: 2.3s;
+          animation-duration: 2.3s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
@@ -1124,6 +1177,22 @@ div.eigth img {
 .swiper-wrapper {
   width: 100%;
   height: 100%;
+}
+
+@media screen and (max-width: 640px) {
+  .full {
+    height: calc(100vh - 98px);
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .full-wrap {
+    height: calc(100vh - 98px);
+  }
+}
+
+.fullSlider {
+  height: calc(100% - 98px);
 }
 
 .full__item {

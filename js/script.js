@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	playVideo();
 	fullSwiperSlider();
 	horizontalScroll();
+	addScrollToDownArrow();
 });
 
 
@@ -29,7 +30,7 @@ const killPreload = () =>{
 			animeCirclePath.style.fill = "#00E600";
 		}
 		setTimeout(() => animateCharacters(), 100);
-		setTimeout(() => BURGER.style.animationName = 'burgerOpacity', 500);
+		setTimeout(() => BURGER.style.animationName = 'burgerOpacity', 1500);
 		setTimeout(() => preloadWrap.style.display = "none", 1000);
 	});
 }
@@ -64,19 +65,16 @@ const scrollHeader = () =>{
 					if (scrollTop > 100) {
 						scrollHeader.classList.add("fixed-header-nav");
 						scrollHeader.style.animationName = "smoothScroll";
-						// setTimeout(() => BURGER.style.animationName = 'burgerOpacity', 300);
 						setTimeout(() => headerLogo.style.display = 'block', 100);
 						setTimeout(() => headerLogo.style.animationName = 'burgerOpacity', 500);
 					}
 				} else if (scrollTop <= 0) {
 					scrollHeader.classList.remove("fixed-header-nav");
 					scrollHeader.style.animationName = "removeSmoothScroll";
-					// setTimeout(() => BURGER.style.animationName = 'removeBurgerOpacity', 300);
 					setTimeout(() => headerLogo.style.animationName = 'removeBurgerOpacity', 300);
 					setTimeout(() => headerLogo.style.display = 'none', 500);
 				}
 				lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-				// updateMenuPosition(scrollTop);
 			}
 		)
 	}
@@ -117,12 +115,12 @@ const horizontalScroll = () => {
   if (process) {
     gsap.registerPlugin(ScrollTrigger);
     let sections = gsap.utils.toArray('.process__item');
-    
+		const slidesPerRow = 3;
+		const sectionsCount = sections.length;
     if (sections.length > 3) {
       ScrollTrigger.matchMedia({
         "(min-width: 768px)": function() {
-          const slidesPerRow = 3;
-          const sectionsCount = sections.length;
+         
 					process.style.width = `calc(100% * ${sectionsCount})`;
           sections.forEach(item => item.style.width = `33vw`);
           
@@ -134,18 +132,11 @@ const horizontalScroll = () => {
               scrub: 1,
               pin: true,
               end: () => `+=${(sectionsCount - slidesPerRow) * window.innerWidth / slidesPerRow}`,
-              onUpdate: self => {
-                const lastSlide = sections[sectionsCount - 1];
-                const lastSlideRect = lastSlide.getBoundingClientRect();
-                const viewportWidth = window.innerWidth;
-                if (lastSlideRect.left >= 0 && lastSlideRect.right <= viewportWidth) {
-                  self.scrollTrigger.kill(); 
-                }
-              }
             }
           });
         },
         "(max-width: 767px)": function() {
+					process.style.width = `calc(100% * ${sectionsCount})`;
           sections.forEach(item => item.style.width = `100%`);
           gsap.to(sections, {
             xPercent: -100 * (sections.length - 1),
@@ -155,14 +146,6 @@ const horizontalScroll = () => {
               scrub: 1,
               pin: true,
               end: () => "+=" + process.offsetWidth,
-              onUpdate: self => {
-                const lastSlide = sections[sections.length - 1];
-                const lastSlideRect = lastSlide.getBoundingClientRect();
-                const viewportWidth = window.innerWidth;
-                if (lastSlideRect.left >= 0 && lastSlideRect.right <= viewportWidth) {
-                  self.scrollTrigger.kill();
-                }
-              }
             }
           });
         }
@@ -230,71 +213,91 @@ const fullSwiperSlider = () =>{
 }
 
 $(document).ready(function () {
-    $('#pagepiling').pagepiling({
-        menu: null,
-        direction: 'vertical',
-        verticalCentered: true,
-        sectionsColor: [],
-        anchors: [],
-        scrollingSpeed: 700,
-        easing: 'swing',
-        loopBottom: false,
-        loopTop: false,
-        css3: true,
-        navigation: {
-            'textColor': '#000',
-            'bulletsColor': '#000',
-            'position': 'right',
-            'tooltips': ['section1', 'section2', 'section3', 'section4']
-        },
-        normalScrollElements: '.content',
-        normalScrollElementTouchThreshold: 5,
-        touchSensitivity: 5,
-        keyboardScrolling: true,
-        sectionSelector: '.section',
-        animateAnchor: false,
+	$('#pagepiling').pagepiling({
+			menu: null,
+			direction: 'vertical',
+			verticalCentered: true,
+			sectionsColor: [],
+			anchors: [],
+			scrollingSpeed: 700,
+			easing: 'swing',
+			loopBottom: false,
+			loopTop: false,
+			css3: true,
+			navigation: {
+					'textColor': '#000',
+					'bulletsColor': '#000',
+					'position': 'right',
+					'tooltips': ['section1', 'section2', 'section3', 'section4']
+			},
+			normalScrollElements: '.content',
+			normalScrollElementTouchThreshold: 5,
+			touchSensitivity: 5,
+			keyboardScrolling: true,
+			sectionSelector: '.section',
+			animateAnchor: false,
 
-        // Обработка событий
-        onLeave: function (index, nextIndex, direction) {
+			// Обработка событий
+			onLeave: function (index, nextIndex, direction) {
 
-            // Проверяем, если мы достигли последней секции
-            if (nextIndex === 4 && direction === 'down') {
-                $('html').addClass('normal-scroll'); 
+					// Проверяем, если мы достигли последней секции
+					if (nextIndex === 4 && direction === 'down') {
+							$('html').addClass('normal-scroll'); 
 
-                // Проверка на мобильное устройство
-                if ($(window).width() <= 767) {
-                    setTimeout(function () {
-                        window.scrollBy({
-                            top: window.innerHeight * 0.5,
-                            behavior: 'smooth'
-                        });
-                    }, 200);
-                }
-            }
+							// Проверка на мобильное устройство
+							if ($(window).width() <= 767) {
+									setTimeout(function () {
+											window.scrollBy({
+													top: window.innerHeight * 0.5,
+													behavior: 'smooth'
+											});
+									}, 200);
+							}
+					}
 
-            // Удаляем класс, если мы возвращаемся на предыдущую секцию
-            if (nextIndex === 3 && direction === 'up') {
-                $('html').removeClass('normal-scroll');
-            }
-        },
-        afterLoad: function (anchorLink, index) { },
-        afterRender: function () {
-            $.fn.pagepiling.moveTo(1);
-        }
-    });
+					// Удаляем класс, если мы возвращаемся на предыдущую секцию
+					if (nextIndex === 3 && direction === 'up') {
+							$('html').removeClass('normal-scroll');
+					}
+			},
+			afterLoad: function (anchorLink, index) { },
+			afterRender: function () {
+					$.fn.pagepiling.moveTo(1);
+			}
+	});
 });
 
 
 // Функция для прокрутки страницы вверх
 const scrollToTop = () => {
-	setTimeout(() => {
-	  window.scrollTo({
-		top: 0,
-		behavior: 'smooth'
+setTimeout(() => {
+	window.scrollTo({
+	top: 0,
+	behavior: 'smooth'
+	});
+}, 100); // Задержка 100 мс
+};
+
+window.addEventListener('load', scrollToTop);
+
+
+// Стрелочная функция для обработки кликов по элементам с классом .down-arrow
+const addScrollToDownArrow = () => {
+	// Получаем все элементы с классом .down-arrow
+	const downArrows = document.querySelectorAll('.down-arrow');
+  
+	// Добавляем обработчик события на каждый элемент
+	downArrows.forEach(arrow => {
+	  arrow.addEventListener('click', () => {
+		// Плавная прокрутка вниз на 40vh
+		window.scrollBy({
+		  top: window.innerHeight * 0.4,
+		  behavior: 'smooth'
+		});
 	  });
-	}, 100); // Задержка 100 мс
+	});
   };
   
-  // Запускаем функцию при загрузке страницы
-  window.addEventListener('load', scrollToTop);
+  // Вызов функции для добавления обработчиков
+  addScrollToDownArrow();
   
