@@ -1,0 +1,34 @@
+.successes{
+	padding: 200px 0;
+}
+.successes__title{
+	margin-bottom: 200px;
+	padding: 0 10px;
+}
+
+.process-wrap {
+  overflow: hidden;
+}
+.process {
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+	// width: 300%;
+}
+
+.captured__item{
+	display: flex;
+	flex-direction: column;
+	height: 90vh;
+	width:33%;
+		& img{
+			aspect-ratio: 1;
+			flex-grow: 1;
+			object-fit: cover;
+			height: 57%;
+			@media screen and (max-width:767px) {
+				height: 40%;
+			}
+		}
+}
+

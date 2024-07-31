@@ -1,0 +1,73 @@
+.main{
+	height: calc(100vh - 98px);
+	width: 100%;
+}
+.main__container{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 60px;
+	height: 100%;
+	position: relative;
+	padding: 0 30px;
+	& img{
+		width: 25%;
+	}
+	& p{
+		font-size: 24px;
+		font-style: normal;
+		font-weight: 300;
+		line-height: 110%;
+		color: $--green;
+	}
+	& .down-arrow{
+		position: absolute;
+		bottom: 60px;
+		width: 46px;
+		height: 65px;
+	}
+}
+
+.animate-logo{
+	max-width: 531px;
+	width: 100%;
+	@media screen and (max-width:767px) {
+		& svg{
+			max-width: 40%;
+		}
+	}
+	& svg:not([class]){
+		animation-duration: .8s;
+		animation-fill-mode: forwards;
+		&:first-child{
+			transform: translateX(45px);
+		}
+		&:nth-of-type(2){
+			transform: translateX(35px);
+		}
+		&:nth-of-type(3){
+			transform: translateX(16px);
+		}
+		&:nth-of-type(4){
+			transform: translateX(16px);
+		}
+	}
+}
+.anime-circle{
+	margin-left: -21px;
+position: relative;
+z-index: -1;
+transition: .3s ease-in-out;
+}
+.anime-ch{
+	margin-left: -23px;
+	position: relative;
+	z-index: -2;
+}
+
+@keyframes animateLetters {
+	to {
+		transform: translateX(0);
+	}
+}
