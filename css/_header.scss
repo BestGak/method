@@ -16,9 +16,9 @@
 	border-bottom: 1px solid transparent;
 	
 }
-.scroll-header{
+.scroll-header {
 	transition: all .5s;
-	&.fixed-header-nav {
+	&.fixed-header-nav , .normal-scroll &   {
 		background-color: #fff;
     top: 0;
 		left: 0;

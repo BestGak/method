@@ -198,11 +198,11 @@ body {
   margin-bottom: 20px;
 }
 .item__content p:nth-last-of-type(1) {
-  margin-bottom: auto;
+  margin-bottom: 30px;
 }
 .item__content a {
   margin: 0 auto;
-  margin-top: auto;
+  margin-bottom: auto;
   bottom: 0;
 }
 
@@ -348,7 +348,7 @@ section.section {
 .scroll-header {
   transition: all 0.5s;
 }
-.scroll-header.fixed-header-nav {
+.scroll-header.fixed-header-nav, .normal-scroll .scroll-header {
   background-color: #fff;
   top: 0;
   left: 0;
