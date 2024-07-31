@@ -245,7 +245,7 @@ $(document).ready(function () {
             'textColor': '#000',
             'bulletsColor': '#000',
             'position': 'right',
-            'tooltips': ['section1', 'section2', 'section3' , 'section4']
+            'tooltips': ['section1', 'section2', 'section3', 'section4']
         },
         normalScrollElements: '.content',
         normalScrollElementTouchThreshold: 5,
@@ -255,22 +255,35 @@ $(document).ready(function () {
         animateAnchor: false,
 
         // Обработка событий
-        onLeave: function(index, nextIndex, direction) {
+        onLeave: function (index, nextIndex, direction) {
 
+            // Проверяем, если мы достигли последней секции
             if (nextIndex === 4 && direction === 'down') {
                 $('html').addClass('normal-scroll'); 
+
+                // Проверка на мобильное устройство
+                if ($(window).width() <= 767) {
+                    setTimeout(function () {
+                        window.scrollBy({
+                            top: window.innerHeight * 0.5,
+                            behavior: 'smooth'
+                        });
+                    }, 200);
+                }
             }
 
+            // Удаляем класс, если мы возвращаемся на предыдущую секцию
             if (nextIndex === 3 && direction === 'up') {
-                $('html').removeClass('normal-scroll'); // Убираем класс с HTML
+                $('html').removeClass('normal-scroll');
             }
         },
-        afterLoad: function(anchorLink, index) {},
-		afterRender: function() {
-			$.fn.pagepiling.moveTo(1);
-		}
+        afterLoad: function (anchorLink, index) { },
+        afterRender: function () {
+            $.fn.pagepiling.moveTo(1);
+        }
     });
 });
+
 
 // Функция для прокрутки страницы вверх
 const scrollToTop = () => {
