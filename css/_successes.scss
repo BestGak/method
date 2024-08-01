@@ -1,5 +1,5 @@
 .successes{
-	padding: 200px 0;
+	padding: 200px 0 0 0;
 }
 .successes__title{
 	margin-bottom: 200px;
@@ -13,7 +13,6 @@
   display: flex;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
-	// width: 300%;
 }
 
 .captured__item{
@@ -30,5 +29,9 @@
 				height: 40%;
 			}
 		}
+		
 }
-
+.captured__item__content{
+	height: 100%;
+	flex-grow: 1;
+}

@@ -1,6 +1,4 @@
 .preload{
-	width: 100vw;
-	height: 100vh;
 	top: 0;
   left: 0;
   right: 0;
@@ -16,25 +14,28 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	animation-duration: 1.5s;
+	animation-duration: .5s;
 	 animation-fill-mode: forwards;
 	 position: fixed;
 	 cursor: pointer;
 }
-
 .preload-switch{
 	position: relative;
 	display: flex;
 	align-items: center;
-	margin: 0 auto;
+	// margin: 0 auto;
+	// justify-content: center;
+	// margin-left: 18%;
+    margin-top: 2%;
 	background-color: $--fills-secondary;
 	border-radius: 348.148px;
 	padding: 7px 77px 7px 7px;
 	z-index: 1;
 	max-width: 178px;
 	width: 100%;
-	animation-duration: .8s;
-	animation-fill-mode: forwards;
+	animation-duration: 1s;
+	 animation-fill-mode: forwards;
+	
 }
 
 .white-circle{
@@ -46,6 +47,11 @@
 	height: 94px;
 	z-index: inherit;
 	position: relative;
+	@media screen and (max-width:640px) {
+		// width: 53%;
+		height: auto;
+		aspect-ratio: 1;
+	 }
 }
 @keyframes removeOpacityPreload {
 	0%{

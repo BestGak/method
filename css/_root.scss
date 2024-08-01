@@ -26,11 +26,12 @@
 html:has(.preload) {
   overflow: hidden;
 }
-
-	 .header-active {
+html:has(.preload).addscroll {
+	overflow: visible;
+}
+html:has(.preload).addscroll.header-active {
 	overflow: hidden;
 }
-
 // *{
 // 	border: 1px solid red;
 // }
@@ -93,7 +94,19 @@ body {
 	overflow-x: hidden;
 }
 
+// html, body { height: auto; }
 
+
+// .section {
+//   height: 100vh;
+//   width: 100%;
+//   top: 0;
+//   // position: absolute;
+//   visibility: hidden;
+//   will-change: transform;
+
+
+// }
 .mini-content{
 	max-width: 390px;
 	margin: 0 auto;
@@ -134,16 +147,16 @@ background-color: $--green;
 	height: 100%;
 	display: flex;
     flex-direction: column;
+		gap: 60px;
 	& p{
 		margin-bottom: 20px;
 		&:nth-last-of-type(1){
-			margin-bottom: 30px;
+			margin-bottom: 0;
 		}
 	}
 	& a{
 		margin: 0 auto;
-		margin-bottom: auto;
-		bottom: 0;
+		margin-top: auto;
 	}
 }
 
@@ -156,8 +169,8 @@ section.section {
 }
 .content {
 	position: relative;
-	top: 100vh;
-	margin-bottom: 100vh;
+	// top: 100vh;
+	// margin-bottom: 100vh;
 }
 
 .normal-scroll {

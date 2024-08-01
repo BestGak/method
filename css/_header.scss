@@ -16,9 +16,9 @@
 	border-bottom: 1px solid transparent;
 	
 }
-.scroll-header {
+.scroll-header{
 	transition: all .5s;
-	&.fixed-header-nav , .normal-scroll &   {
+	&.fixed-header-nav {
 		background-color: #fff;
     top: 0;
 		left: 0;
@@ -41,9 +41,6 @@
 	animation-fill-mode: forwards;
 	animation-duration: 1s;
 	margin-left: auto;
-	.home & {
-		opacity: 0;
-	}
 	.scroll-header &{
 		opacity: 0;
 	}
@@ -87,6 +84,7 @@
 	
 }
 .header-active {
+	overflow: hidden;
 	& .header-nav {
 		transform: translateX(0%);
 	}
@@ -116,14 +114,14 @@
 		& ul{
 			display: flex;
 			flex-direction: column;
-			gap: 0;
+			gap: 68px;
 			text-align: center;
 			align-items: center;
 			@media screen and (max-width:1023px) {
-				gap: 0;
+				gap: 34px;
 				}
 					@media screen and (max-width:767px) {
-						gap: 0;
+						gap: 20px;
 				}
 		& li{
 		&	.header__socials{

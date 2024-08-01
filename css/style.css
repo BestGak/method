@@ -96,7 +96,11 @@ html:has(.preload) {
   overflow: hidden;
 }
 
-.header-active {
+html:has(.preload).addscroll {
+  overflow: visible;
+}
+
+html:has(.preload).addscroll.header-active {
   overflow: hidden;
 }
 
@@ -193,17 +197,17 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+  gap: 60px;
 }
 .item__content p {
   margin-bottom: 20px;
 }
 .item__content p:nth-last-of-type(1) {
-  margin-bottom: 30px;
+  margin-bottom: 0;
 }
 .item__content a {
   margin: 0 auto;
-  margin-bottom: auto;
-  bottom: 0;
+  margin-top: auto;
 }
 
 section.section {
@@ -217,8 +221,6 @@ section.section {
 
 .content {
   position: relative;
-  top: 100vh;
-  margin-bottom: 100vh;
 }
 
 .normal-scroll {
@@ -233,8 +235,6 @@ section.section {
 }
 
 .preload {
-  width: 100vw;
-  height: 100vh;
   top: 0;
   left: 0;
   right: 0;
@@ -250,8 +250,8 @@ section.section {
   display: flex;
   align-items: center;
   justify-content: center;
-  -webkit-animation-duration: 1.5s;
-          animation-duration: 1.5s;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
   position: fixed;
@@ -262,15 +262,15 @@ section.section {
   position: relative;
   display: flex;
   align-items: center;
-  margin: 0 auto;
+  margin-top: 2%;
   background-color: rgba(120, 120, 128, 0.32);
   border-radius: 348.148px;
   padding: 7px 77px 7px 7px;
   z-index: 1;
   max-width: 178px;
   width: 100%;
-  -webkit-animation-duration: 0.8s;
-          animation-duration: 0.8s;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
@@ -284,6 +284,12 @@ section.section {
   height: 94px;
   z-index: inherit;
   position: relative;
+}
+@media screen and (max-width: 640px) {
+  .white-circle {
+    height: auto;
+    aspect-ratio: 1;
+  }
 }
 
 @-webkit-keyframes removeOpacityPreload {
@@ -348,7 +354,7 @@ section.section {
 .scroll-header {
   transition: all 0.5s;
 }
-.scroll-header.fixed-header-nav, .normal-scroll .scroll-header {
+.scroll-header.fixed-header-nav {
   background-color: #fff;
   top: 0;
   left: 0;
@@ -373,9 +379,6 @@ section.section {
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
   margin-left: auto;
-}
-.home .burger {
-  opacity: 0;
 }
 .scroll-header .burger {
   opacity: 0;
@@ -417,6 +420,9 @@ section.section {
   opacity: 1;
 }
 
+.header-active {
+  overflow: hidden;
+}
 .header-active .header-nav {
   transform: translateX(0%);
 }
@@ -448,18 +454,18 @@ section.section {
 .header-nav nav ul {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 68px;
   text-align: center;
   align-items: center;
 }
 @media screen and (max-width: 1023px) {
   .header-nav nav ul {
-    gap: 0;
+    gap: 34px;
   }
 }
 @media screen and (max-width: 767px) {
   .header-nav nav ul {
-    gap: 0;
+    gap: 20px;
   }
 }
 .header-nav nav ul li .header__socials {
@@ -548,7 +554,7 @@ section.section {
   }
 }
 .main {
-  height: 100vh;
+  height: calc(100vh - 98px);
   width: 100%;
 }
 
@@ -578,17 +584,21 @@ section.section {
   color: #00E600;
 }
 .main__container .down-arrow {
-  cursor: pointer;
   position: absolute;
   bottom: 60px;
   width: 46px;
   height: 65px;
+  cursor: pointer;
 }
 
 .animate-logo {
   max-width: 531px;
-  transition: all 0.5s;
   width: 100%;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  transform: translate(-19%, 0);
 }
 @media screen and (max-width: 767px) {
   .animate-logo svg:nth-of-type(1) {
@@ -610,9 +620,12 @@ section.section {
     width: 16%;
   }
 }
+.animate-logo svg {
+  height: auto;
+}
 .animate-logo svg:not([class]) {
-  -webkit-animation-duration: 2.3s;
-          animation-duration: 2.3s;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
@@ -653,9 +666,31 @@ section.section {
     transform: translateX(0);
   }
 }
+@-webkit-keyframes animateLogoWrap {
+  0% {
+    transform: translate(-19%, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes animateLogoWrap {
+  0% {
+    transform: translate(-19%, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+.panel {
+  height: 100vh;
+  top: 0;
+  overflow: hidden;
+}
+
 .slider-block {
   display: flex;
-  height: 100vh;
+  height: 100%;
 }
 .slider-block img {
   width: 100%;
@@ -669,96 +704,8 @@ img.right,
 img.left {
   width: 50%;
   height: auto;
-  -webkit-animation-duration: 0.8s;
-          animation-duration: 0.8s;
-  transition: 0.8s ease;
 }
 
-img.right {
-  -webkit-animation-name: killAnimateRightImages;
-          animation-name: killAnimateRightImages;
-  transform: translateY(0%);
-}
-.active img.right {
-  -webkit-animation-name: animateRightImages;
-          animation-name: animateRightImages;
-}
-
-img.left {
-  -webkit-animation-name: killAnimateRLeftImages;
-          animation-name: killAnimateRLeftImages;
-  transform: translateY(0%);
-}
-.active img.left {
-  -webkit-animation-name: animateLeftImages;
-          animation-name: animateLeftImages;
-}
-
-@-webkit-keyframes animateRightImages {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-@keyframes animateRightImages {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-@-webkit-keyframes killAnimateRightImages {
-  0% {
-    transform: translateY(0%);
-  }
-  100% {
-    transform: translateY(-100%);
-  }
-}
-@keyframes killAnimateRightImages {
-  0% {
-    transform: translateY(0%);
-  }
-  100% {
-    transform: translateY(-100%);
-  }
-}
-@-webkit-keyframes animateLeftImages {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-@keyframes animateLeftImages {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-@-webkit-keyframes killAnimateLeftImages {
-  0% {
-    transform: translateY(0%);
-  }
-  100% {
-    transform: translateY(100%);
-  }
-}
-@keyframes killAnimateLeftImages {
-  0% {
-    transform: translateY(0%);
-  }
-  100% {
-    transform: translateY(100%);
-  }
-}
 .mission {
   padding: 200px 0;
   background: #FFF;
@@ -870,7 +817,7 @@ img.left {
 }
 
 .successes {
-  padding: 200px 0;
+  padding: 200px 0 0 0;
 }
 
 .successes__title {
@@ -904,6 +851,11 @@ img.left {
   .captured__item img {
     height: 40%;
   }
+}
+
+.captured__item__content {
+  height: 100%;
+  flex-grow: 1;
 }
 
 .heart {

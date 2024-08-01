@@ -1,7 +1,16 @@
-
+// .pined{
+// 	height: 100vh;
+// 	overflow: hidden;
+// }
+.panel {
+  height: 100vh;
+  top: 0;
+	overflow: hidden;
+}
 .slider-block{
 	display: flex;
-	height: 100vh;
+	// height: 100vh;
+	height: 100%;
 	& img {
 		width: 100%;
 		flex-grow: 1;
@@ -13,52 +22,53 @@ img.right,
 img.left {
   width: 50%;
   height: auto;
-	animation-duration: .8s;
-	transition: .8s ease;
+	// animation-duration: .8s;
+	// transition: .8s ease;
 }
-img.right{
-	animation-name:killAnimateRightImages;
-transform: translateY(0%);
-	.active &{
-		animation-name: animateRightImages;
-			}
-}
-img.left{
-animation-name:killAnimateRLeftImages;
-transform: translateY(0%);
-	.active &{
-		animation-name: animateLeftImages;
-			}
-}
-@keyframes animateRightImages {
-	0%{
-		transform: translateY(-100%);
-	}
-	100%{
-		transform: translateY(0);
-	}
-}
-@keyframes killAnimateRightImages {
-	0%{
-		transform: translateY(0%);
-	}
-	100%{
-		transform: translateY(-100%);
-	}
-}
-@keyframes animateLeftImages {
-	0%{
-		transform: translateY(100%);
-	}
-	100%{
-		transform: translateY(0);
-	}
-}
-@keyframes killAnimateLeftImages {
-	0%{
-		transform: translateY(0%);
-	}
-	100%{
-		transform: translateY(100%);
-	}
-}
+// img.right{
+// 	animation-name:killAnimateRightImages;
+// transform: translateY(0%);
+// 	// .active &{
+// 	// 	animation-name: animateRightImages;
+// 	// 		}
+// }
+// img.left{
+// animation-name:killAnimateRLeftImages;
+// transform: translateY(0%);
+// 	// .active &{
+// 	// 	animation-name: animateLeftImages;
+// 	// 		}
+// }
+// @keyframes animateRightImages {
+// 	0%{
+// 		transform: translateY(-100%);
+// 	}
+// 	100%{
+// 		transform: translateY(0);
+// 	}
+// }
+// @keyframes killAnimateRightImages {
+// 	0%{
+// 		transform: translateY(0%);
+// 	}
+// 	100%{
+// 		transform: translateY(-100%);
+// 	}
+// }
+// @keyframes animateLeftImages {
+// 	0%{
+// 		transform: translateY(100%);
+// 	}
+// 	100%{
+// 		transform: translateY(0);
+// 	}
+// }
+// @keyframes killAnimateLeftImages {
+// 	0%{
+// 		transform: translateY(0%);
+// 	}
+// 	100%{
+// 		transform: translateY(100%);
+// 	}
+// }
+
