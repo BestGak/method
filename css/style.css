@@ -25,10 +25,14 @@ blockquote,
 dl,
 dd {
   margin: 0;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+  -webkit-margin-before: 0;
+          margin-block-start: 0;
+  -webkit-margin-after: 0;
+          margin-block-end: 0;
+  -webkit-margin-start: 0px;
+          margin-inline-start: 0px;
+  -webkit-margin-end: 0px;
+          margin-inline-end: 0px;
 }
 
 ul[class],
@@ -60,6 +64,7 @@ select {
 }
 
 a {
+  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   text-decoration: none;
@@ -238,14 +243,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
   position: fixed;
   cursor: pointer;
 }
 
 .preload.remove {
-  animation-name: removeOpacityPreload;
+  -webkit-animation-name: removeOpacityPreload;
+          animation-name: removeOpacityPreload;
 }
 
 .preload-switch {
@@ -259,12 +267,15 @@ body {
   z-index: 1;
   max-width: 178px;
   width: 100%;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
   transform: translateX(46%);
 }
 .remove .preload-switch {
-  animation-name: changeSwitchPadding;
+  -webkit-animation-name: changeSwitchPadding;
+          animation-name: changeSwitchPadding;
 }
 @media screen and (max-width: 640px) {
   .preload-switch {
@@ -272,7 +283,8 @@ body {
     max-width: 104px;
   }
   .remove .preload-switch {
-    animation-name: changeSwitchPaddingMini;
+    -webkit-animation-name: changeSwitchPaddingMini;
+            animation-name: changeSwitchPaddingMini;
   }
 }
 
@@ -293,6 +305,21 @@ body {
   }
 }
 
+@-webkit-keyframes removeOpacityPreload {
+  0% {
+    opacity: 1;
+    z-index: 50;
+  }
+  50% {
+    opacity: 0.5;
+    z-index: 50;
+  }
+  100% {
+    opacity: 0;
+    z-index: 0;
+  }
+}
+
 @keyframes removeOpacityPreload {
   0% {
     opacity: 1;
@@ -307,6 +334,16 @@ body {
     z-index: 0;
   }
 }
+@-webkit-keyframes changeSwitchPadding {
+  0% {
+    padding-left: 7px;
+    padding-right: 77px;
+  }
+  100% {
+    padding-left: 77px;
+    padding-right: 7px;
+  }
+}
 @keyframes changeSwitchPadding {
   0% {
     padding-left: 7px;
@@ -315,6 +352,16 @@ body {
   100% {
     padding-left: 77px;
     padding-right: 7px;
+  }
+}
+@-webkit-keyframes changeSwitchPaddingMini {
+  0% {
+    padding-left: 4px;
+    padding-right: 45px;
+  }
+  100% {
+    padding-left: 45px;
+    padding-right: 4px;
   }
 }
 @keyframes changeSwitchPaddingMini {
@@ -358,7 +405,8 @@ body {
 }
 .header-active .header.fixed-header-nav-half .burger {
   opacity: 1;
-  animation-name: burgerOpacity !important;
+  -webkit-animation-name: burgerOpacity !important;
+          animation-name: burgerOpacity !important;
 }
 
 .header__container {
@@ -378,8 +426,10 @@ body {
   flex-direction: column;
   cursor: pointer;
   transition: 0.3s ease-in-out;
-  animation-fill-mode: forwards;
-  animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
   margin-left: auto;
   opacity: 0;
 }
@@ -504,7 +554,8 @@ body {
     font-style: normal;
     font-weight: 500;
     line-height: 125%;
-    text-decoration-line: underline;
+    -webkit-text-decoration-line: underline;
+            text-decoration-line: underline;
     text-transform: uppercase;
     white-space: wrap;
   }
@@ -523,12 +574,29 @@ body {
   width: 100%;
 }
 
+@-webkit-keyframes burgerOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes burgerOpacity {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
+  }
+}
+@-webkit-keyframes removeBurgerOpacity {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 @keyframes removeBurgerOpacity {
@@ -582,8 +650,10 @@ body {
 .animate-logo {
   max-width: 531px;
   width: 100%;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
   display: flex;
   align-items: end;
 }
@@ -611,26 +681,31 @@ body {
   height: auto;
 }
 .animate-logo svg:not([class]) {
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 .animate-logo svg:not([class]):first-child {
   transform: translateX(45px) scale(1);
 }
 .animate .animate-logo svg:not([class]):first-child {
-  animation-name: animateLetters;
+  -webkit-animation-name: animateLetters;
+          animation-name: animateLetters;
 }
 .animate-logo svg:not([class]):nth-of-type(2) {
   transform: translateX(35px);
 }
 .animate .animate-logo svg:not([class]):nth-of-type(2) {
-  animation-name: animateLetters;
+  -webkit-animation-name: animateLetters;
+          animation-name: animateLetters;
 }
 .animate-logo svg:not([class]):nth-of-type(3) {
   transform: translateX(16px);
 }
 .animate .animate-logo svg:not([class]):nth-of-type(3) {
-  animation-name: animateLetters;
+  -webkit-animation-name: animateLetters;
+          animation-name: animateLetters;
 }
 .animate-logo svg:not([class]):nth-of-type(4) {
   position: relative;
@@ -638,19 +713,24 @@ body {
   z-index: 2;
 }
 .animate .animate-logo svg:not([class]):nth-of-type(4) {
-  animation-name: animateLetters;
+  -webkit-animation-name: animateLetters;
+          animation-name: animateLetters;
 }
 .animate-logo.animate svg:not([class]):first-child {
-  animation-name: animateLetters;
+  -webkit-animation-name: animateLetters;
+          animation-name: animateLetters;
 }
 .animate-logo.animate svg:not([class]):nth-of-type(2) {
-  animation-name: animateLetters;
+  -webkit-animation-name: animateLetters;
+          animation-name: animateLetters;
 }
 .animate-logo.animate svg:not([class]):nth-of-type(3) {
-  animation-name: animateLetters;
+  -webkit-animation-name: animateLetters;
+          animation-name: animateLetters;
 }
 .animate-logo.animate svg:not([class]):nth-of-type(4) {
-  animation-name: animateLetters;
+  -webkit-animation-name: animateLetters;
+          animation-name: animateLetters;
   z-index: 2;
 }
 
@@ -660,11 +740,14 @@ body {
   z-index: 1;
 }
 .anime-circle path {
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 .animate .anime-circle path {
-  animation-name: fillColorChange;
+  -webkit-animation-name: fillColorChange;
+          animation-name: fillColorChange;
 }
 
 .anime-ch {
@@ -673,12 +756,27 @@ body {
   z-index: 0;
 }
 .animate .anime-ch {
-  animation-name: scaleAnimation;
+  -webkit-animation-name: scaleAnimation;
+          animation-name: scaleAnimation;
+}
+
+@-webkit-keyframes animateLetters {
+  to {
+    transform: translateX(0) scale(1);
+  }
 }
 
 @keyframes animateLetters {
   to {
     transform: translateX(0) scale(1);
+  }
+}
+@-webkit-keyframes scaleAnimation {
+  from {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1);
   }
 }
 @keyframes scaleAnimation {
@@ -687,6 +785,14 @@ body {
   }
   to {
     transform: scale(1);
+  }
+}
+@-webkit-keyframes fillColorChange {
+  0% {
+    fill: #FFFFFF;
+  }
+  100% {
+    fill: #00E600;
   }
 }
 @keyframes fillColorChange {
@@ -753,7 +859,7 @@ img.left {
 }
 @media screen and (max-width: 640px) {
   img.right,
-  img.left {
+img.left {
     width: 100%;
     height: 50vh;
   }
@@ -941,8 +1047,10 @@ img.left {
   margin-bottom: 200px;
 }
 .animate__heart img {
-  animation-fill-mode: forwards;
-  animation-duration: 0.2s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
   transition: 0.3s ease-in-out;
   opacity: 0;
   -o-object-fit: contain;
@@ -1026,6 +1134,15 @@ div.seventh img {
 div.eigth img {
   transform: translate(5px, -12px);
   width: 13%;
+}
+
+@-webkit-keyframes heartAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes heartAnimation {
@@ -1214,6 +1331,7 @@ div.eigth img {
 
 .fullSlider-pagination {
   display: block;
+  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
@@ -1222,6 +1340,7 @@ div.eigth img {
   transform: translate(-50%, 0%);
   left: 50%;
   position: relative;
+  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   z-index: 1;
@@ -1280,6 +1399,7 @@ div.eigth img {
   overflow: hidden;
   height: auto;
   background: linear-gradient(90deg, #E5E5E5 50%, #BABABA 100%);
+  margin-top: 200px;
 }
 
 .bg-circle {
