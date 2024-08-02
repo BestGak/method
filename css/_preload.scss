@@ -19,23 +19,34 @@
 	 position: fixed;
 	 cursor: pointer;
 }
+.preload.remove{
+	animation-name: removeOpacityPreload;
+}
 .preload-switch{
 	position: relative;
 	display: flex;
 	align-items: center;
-	// margin: 0 auto;
-	// justify-content: center;
-	// margin-left: 18%;
     margin-top: 2%;
 	background-color: $--fills-secondary;
 	border-radius: 348.148px;
 	padding: 7px 77px 7px 7px;
+
 	z-index: 1;
 	max-width: 178px;
 	width: 100%;
 	animation-duration: 1s;
 	 animation-fill-mode: forwards;
-	
+	 transform: translateX(46%);
+	 .remove &{
+		animation-name: changeSwitchPadding;
+	 } 
+	 @media screen and (max-width:640px){
+		padding: 4px 45px 4px 4px;
+		max-width: 104px;
+		.remove &{
+			animation-name: changeSwitchPaddingMini;
+		 }
+	 }
 }
 
 .white-circle{
@@ -47,15 +58,20 @@
 	height: 94px;
 	z-index: inherit;
 	position: relative;
+	
 	@media screen and (max-width:640px) {
-		// width: 53%;
 		height: auto;
 		aspect-ratio: 1;
 	 }
+	 
 }
 @keyframes removeOpacityPreload {
 	0%{
 		opacity: 1;
+		z-index: 50;
+	}
+	50%{
+		opacity: .5;
 		z-index: 50;
 	}
 	100%{
@@ -71,5 +87,15 @@
 	100%{
 		padding-left: 77px;
 		padding-right: 7px;
+	}
+}
+@keyframes changeSwitchPaddingMini {
+	0%{
+		padding-left: 4px;
+		padding-right: 45px;
+	}
+	100%{
+		padding-left: 45px;
+		padding-right: 4px;
 	}
 }

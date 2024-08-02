@@ -2,9 +2,35 @@
 	position: fixed;
 	width: 100%;
 	z-index: 6;
-	&.normal-scroll {
-		background: #fff;
-
+&.fixed-header-nav {
+		background-color: #fff;
+    top: 0;
+		left: 0;
+    position: fixed;
+		visibility: visible;
+		display: block;
+    width: 100%;
+		border-bottom: 3px solid $--green;
+		z-index: 120;
+		transition: .3s ease-in-out;
+	}
+	&.fixed-header-nav-half{
+		transition: .3s ease-in-out;
+		top: -80px;
+		position: fixed;
+		visibility: visible;
+		background: transparent;
+		border-bottom: 3px solid $--green;
+		
+		.header-active &{
+			top: 0;
+			background-color: $--white;
+			& .burger{
+				opacity: 1;
+				animation-name: burgerOpacity !important;
+			}
+		}
+		
 	}
 }
 .header__container{
@@ -16,20 +42,9 @@
 	border-bottom: 1px solid transparent;
 	
 }
-.scroll-header{
-	transition: all .5s;
-	&.fixed-header-nav {
-		background-color: #fff;
-    top: 0;
-		left: 0;
-    position: fixed;
-		visibility: visible;
-		display: block;
-    width: 100%;
-		border-bottom: 3px solid $--green;
-		z-index: 120;
-	}
-}
+
+
+
 .burger{
 	width: 38px;
 	display: flex;
@@ -41,11 +56,12 @@
 	animation-fill-mode: forwards;
 	animation-duration: 1s;
 	margin-left: auto;
-	.scroll-header &{
-		opacity: 0;
-	}
-	.scroll-header.fixed-header-nav &{
+	opacity: 0;
+.fixed-header-nav &{
 		opacity: 1;
+	}
+	.fixed-header-nav-half &{
+		opacity: 0;
 	}
 	& span{
 		height: 8px;
@@ -84,7 +100,6 @@
 	
 }
 .header-active {
-	overflow: hidden;
 	& .header-nav {
 		transform: translateX(0%);
 	}
@@ -114,9 +129,10 @@
 		& ul{
 			display: flex;
 			flex-direction: column;
-			gap: 68px;
+			gap: 0px;
 			text-align: center;
 			align-items: center;
+			padding: 0 40px;
 			@media screen and (max-width:1023px) {
 				gap: 34px;
 				}
@@ -129,6 +145,7 @@
 				gap: 30px;
 				align-items: center;
 				justify-content: center;
+				margin-top: 10px;
 				&svg{
 					max-width: 86px;
 					max-height: 86px;
@@ -144,7 +161,7 @@
 			& a{
 				display: flex;
 				flex-direction: column;
-				gap: 6px;
+				gap: 2px;
 			font-size: 56px;
 			font-style: normal;
 			font-weight: 600;
@@ -154,11 +171,15 @@
 			color: $--dark-blue;
 			transition: .3s ease-in-out;
 			@media screen and (max-width:1023px) {
-				font-size: 45px;
+				font-size: 40px;
+				font-style: normal;
+				font-weight: 500;
+				line-height: 125%; 
+				text-decoration-line: underline;
+				text-transform: uppercase;
+				white-space: wrap;
 		}
-			@media screen and (max-width:767px) {
-				font-size: 26px;
-		}
+		
 			&:after{
 				content: '';
 				width: 0%;

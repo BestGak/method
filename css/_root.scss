@@ -32,6 +32,7 @@ html:has(.preload).addscroll {
 html:has(.preload).addscroll.header-active {
 	overflow: hidden;
 }
+
 // *{
 // 	border: 1px solid red;
 // }
@@ -71,6 +72,12 @@ h2 {
 	font-style: normal;
 	font-weight: 300;
 	line-height: normal;
+	@media screen and (max-width:640px) {
+		font-size: 55px;
+	}
+	@media screen and (max-width:375px) {
+		font-size: 2.5rem;
+	}
 }
 h3 {
   text-align: center;
@@ -94,21 +101,9 @@ body {
 	overflow-x: hidden;
 }
 
-// html, body { height: auto; }
 
-
-// .section {
-//   height: 100vh;
-//   width: 100%;
-//   top: 0;
-//   // position: absolute;
-//   visibility: hidden;
-//   will-change: transform;
-
-
-// }
 .mini-content{
-	max-width: 390px;
+	max-width: 796px;
 	margin: 0 auto;
 	width: 100%;
 	display: flex;
@@ -142,12 +137,12 @@ background-color: $--green;
 	}
 }
 .item__content{
-	padding: 60px 20px 0 20px;
+	padding: 30px 20px 0 20px;
 	flex-grow: 1;
 	height: 100%;
 	display: flex;
     flex-direction: column;
-		gap: 60px;
+		gap: 30px;
 	& p{
 		margin-bottom: 20px;
 		&:nth-last-of-type(1){
@@ -156,29 +151,15 @@ background-color: $--green;
 	}
 	& a{
 		margin: 0 auto;
-		margin-top: auto;
+		// margin-top: auto;
 	}
 }
 
-section.section {
-	text-align: center;
-	height: 100vh; 
-}
+
 .main {
 	background-color: #fff;
 }
 .content {
 	position: relative;
-	// top: 100vh;
-	// margin-bottom: 100vh;
 }
 
-.normal-scroll {
-	overflow: auto !important; 
-	&.header-active {
-		overflow: hidden !important;
-	}
-}
-#pp-nav {
-	display: none;
-}

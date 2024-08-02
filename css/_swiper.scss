@@ -28,7 +28,7 @@
 		object-fit: cover;
 		max-width: 100%;
 		width: 100%;
-aspect-ratio: 1280 / 768;
+		aspect-ratio: 1280 / 768;
 		height: 100%;
 		max-height: 80%;
 	}
@@ -38,6 +38,10 @@ aspect-ratio: 1280 / 768;
 		text-align: center;
 	}
 
+}
+.fullSlider-pagination{
+	display: block;
+	width: fit-content;
 }
 .swiper-pagination-bullets.fullSlider-pagination{
 	transform: translate(-50%, 0%);

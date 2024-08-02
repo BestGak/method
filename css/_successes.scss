@@ -18,20 +18,22 @@
 .captured__item{
 	display: flex;
 	flex-direction: column;
+	padding-top: 50px;
+	aspect-ratio: 426 / 682;
 	height: 90vh;
 	width:33%;
 		& img{
-			aspect-ratio: 1;
+			aspect-ratio: 426 / 427;
 			flex-grow: 1;
 			object-fit: cover;
-			height: 57%;
-			@media screen and (max-width:767px) {
-				height: 40%;
-			}
+			object-position: 100% 0%;
+			height: 45vh;
+			
 		}
 		
 }
 .captured__item__content{
 	height: 100%;
 	flex-grow: 1;
+	height: 45vh;
 }

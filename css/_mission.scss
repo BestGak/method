@@ -6,19 +6,19 @@
 .mission__title{
 	display: flex;
     flex-direction: column;
-	
+		align-items: center;
 		gap: 60px;
 		margin-bottom: 60px;
-		.mini-content & {
-			max-width: 340px;
-		}
+		// .mini-content & {
+		// 	max-width: 340px;
+		// }
 		& img{
 			max-width:163px;
 			width: 100%;
 			max-height: 120px;
 			height: 100%;
 			object-fit: cover;
-			margin-left: 20%;
+			margin: 0 auto;
 		}
 }
 
@@ -35,7 +35,7 @@
 justify-content: space-between;
 gap: 33px;
 @media screen and (max-width:767px) {
-	flex-direction: column;
+flex-wrap: wrap;
 }
 }
 .show__item{
@@ -45,7 +45,7 @@ gap: 33px;
 	align-items: center;
 	width: calc((100% / 4) - 16.5px);
 	@media screen and (max-width:767px) {
-		width: 100%;
+		width: calc((100% / 2) - 16.5px);
 	}
 	& span{
 		&:nth-of-type(1){
@@ -54,6 +54,9 @@ gap: 33px;
 			font-style: normal;
 			font-weight: 500;
 			line-height: 110%;
+			@media screen and (max-width:767px) {
+				font-size: 3rem;
+			}
 		}
 	}
 	& p{
