@@ -393,11 +393,11 @@ body {
 }
 .header.fixed-header-nav-half {
   transition: 0.3s ease-in-out;
-  top: -80px;
+  top: 0px;
   position: fixed;
   visibility: visible;
   background: transparent;
-  border-bottom: 3px solid #00E600;
+  border-top: 3px solid #00E600;
 }
 .header-active .header.fixed-header-nav-half {
   top: 0;
@@ -542,7 +542,7 @@ body {
   font-size: 56px;
   font-style: normal;
   font-weight: 600;
-  line-height: 200%;
+  line-height: 78px;
   letter-spacing: 0.28px;
   text-transform: uppercase;
   color: #1F305E;

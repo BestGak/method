@@ -16,11 +16,11 @@
 	}
 	&.fixed-header-nav-half{
 		transition: .3s ease-in-out;
-		top: -80px;
+		top: 0px;
 		position: fixed;
 		visibility: visible;
 		background: transparent;
-		border-bottom: 3px solid $--green;
+		border-top: 3px solid $--green;
 		
 		.header-active &{
 			top: 0;
@@ -165,7 +165,7 @@
 			font-size: 56px;
 			font-style: normal;
 			font-weight: 600;
-			line-height: 200%; 
+			line-height: 78px;
 			letter-spacing: 0.28px;
 			text-transform: uppercase;
 			color: $--dark-blue;
