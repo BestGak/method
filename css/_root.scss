@@ -68,10 +68,10 @@ $--fills-secondary: rgba(120, 120, 128, 0.32);
 h2 {
  color:$--dark-blue;
 	text-align: center;
-	font-size: 60px;
+	font-size: 50px;
 	font-style: normal;
 	font-weight: 300;
-	line-height: normal;
+	line-height: 110%;
 	@media screen and (max-width:640px) {
 		font-size: 55px;
 	}
@@ -89,10 +89,10 @@ h3 {
 
 p{
 	text-align: justify;
-	font-size: 20px;
+	font-size: 21px;
 	font-style: normal;
-	font-weight: 300;
-	line-height: 200%;
+	font-weight: 325;
+	line-height: 150%;
 }
 body {
 	font-family: "Satoshi";
@@ -117,9 +117,6 @@ body {
 		line-height: 200%;
 		text-align: justify;
 		margin-bottom: 30px;
-		@media screen and (max-width: 1023px) {
-			font-size: 20px;
-		}
 	}
 }
 .under__link{
@@ -154,7 +151,6 @@ background-color: $--green;
 	}
 	& a{
 		margin: 0 auto;
-		// margin-top: auto;
 	}
 }
 

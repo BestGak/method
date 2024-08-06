@@ -16,7 +16,7 @@
 	}
 	&.fixed-header-nav-half{
 		transition: .3s ease-in-out;
-		top: 0px;
+		top: -0;
 		position: fixed;
 		visibility: visible;
 		background: transparent;
@@ -165,7 +165,7 @@
 			font-size: 56px;
 			font-style: normal;
 			font-weight: 600;
-			line-height: 78px;
+			line-height: 200%; 
 			letter-spacing: 0.28px;
 			text-transform: uppercase;
 			color: $--dark-blue;

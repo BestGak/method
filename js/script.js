@@ -14,164 +14,541 @@ document.addEventListener("DOMContentLoaded", function () {
 	firstSlider();
 });
 
-
-
-
 const firstSlider = () => {
-	if(WINDOWWIDTH > 640){
-		console.clear();
+  console.clear();
 
-		gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-	
-		const sections = document.querySelectorAll(".panel");
-		let lastScrollY = window.scrollY;
-	
-		const scrolling = {
-			enabled: true,
-			events: "scroll,wheel,touchmove,pointermove".split(","),
-			prevent: e => e.preventDefault(),
-			disable() {
-				if (scrolling.enabled) {
-					scrolling.enabled = false;
-					window.addEventListener("scroll", gsap.ticker.tick, {passive: true});
-					scrolling.events.forEach((e, i) => (i ? document : window).addEventListener(e, scrolling.prevent, {passive: false}));
-				}
-			},
-			enable() {
-				if (!scrolling.enabled) {
-					scrolling.enabled = true;
-					window.removeEventListener("scroll", gsap.ticker.tick);
-					scrolling.events.forEach((e, i) => (i ? document : window).removeEventListener(e, scrolling.prevent));
-				}
-			}
-		};
-	
-		function resetAnimations(anims) {
-			anims.forEach(anim => {
-				if (anim.down) anim.down.pause(0).progress(0);
-				if (anim.up) anim.up.pause(0).progress(0);
-			});
-		}
-	
-		function goToSection(section, anims = [], direction) {
-			if (scrolling.enabled) { 
-				scrolling.disable();
-				gsap.to(window, {
-					scrollTo: {y: section, autoKill: false},
-					onComplete: () => {
-						scrolling.enable();
-						anims.forEach(anim => {
-							if (anim) {
-								anim.restart();
-							}
-						});
-					},
-					duration: .5,
-				});
-			}
-		}
-	
-		sections.forEach((section, i) => {
-			const rightElement = section.querySelector(".right");
-			const leftElement = section.querySelector(".left");
-	
-			const anims = [];
-	
-			if (rightElement) {
-				const rightAnimDown = gsap.fromTo(rightElement, 
-					{ yPercent: -100 }, 
-					{ yPercent: 0, duration: 0.5, paused: true }
-				);
-				const rightAnimUp = gsap.fromTo(rightElement, 
-					{ yPercent: 100 }, 
-					{ yPercent: 0, duration: 0.5, paused: true }
-				);
-				anims.push({ down: rightAnimDown, up: rightAnimUp });
-			}
-	
-			if (leftElement) {
-				const leftAnimDown = gsap.fromTo(leftElement, 
-					{ yPercent: 100 }, 
-					{ yPercent: 0, duration: 0.5, paused: true }
-				);
-				const leftAnimUp = gsap.fromTo(leftElement, 
-					{ yPercent: -100 }, 
-					{ yPercent: 0, duration: 0.5, paused: true }
-				);
-				anims.push({ down: leftAnimDown, up: leftAnimUp });
-			}
-	
-			ScrollTrigger.create({
-				trigger: section,
-				start: "top bottom-=1",
-				end: "bottom top+=1",
-				onEnter: () => {
-					const direction = window.scrollY > lastScrollY ? 'down' : 'up';
-					const directionAnims = anims.map(anim => anim[direction]);
-					resetAnimations(anims); // Reset animations before starting
-					goToSection(section, directionAnims, direction);
-				},
-				onEnterBack: () => {
-					const direction = window.scrollY > lastScrollY ? 'down' : 'up';
-					const directionAnims = anims.map(anim => anim[direction]);
-					resetAnimations(anims); // Reset animations before starting
-					goToSection(section, directionAnims, direction);
-				}
-			});
-		});
-	
-		
-		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-			anchor.addEventListener('click', function(e) {
-				e.preventDefault();
-				
-				const targetId = this.getAttribute('href').substring(1);
-				const targetElement = document.getElementById(targetId);
-				
-				if (targetElement) {
-					scrolling.disable();
-					gsap.to(window, {
-						scrollTo: {y: targetElement, autoKill: false},
-						onComplete: scrolling.enable,
-						duration: 2
-					});
-				}
-			});
-		});
-	
-		window.addEventListener('scroll', () => {
-			lastScrollY = window.scrollY;
-		});
-	}
- 
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+  const sections = document.querySelectorAll(".panel");
+  let lastScrollY = window.scrollY;
+
+  const scrolling = {
+    enabled: true,
+    events: "scroll,wheel,touchmove,pointermove".split(","),
+    prevent: e => e.preventDefault(),
+    disable() {
+      if (scrolling.enabled) {
+        scrolling.enabled = false;
+        window.addEventListener("scroll", gsap.ticker.tick, {passive: true});
+        scrolling.events.forEach((e, i) => (i ? document : window).addEventListener(e, scrolling.prevent, {passive: false}));
+      }
+    },
+    enable() {
+      if (!scrolling.enabled) {
+        scrolling.enabled = true;
+        window.removeEventListener("scroll", gsap.ticker.tick);
+        scrolling.events.forEach((e, i) => (i ? document : window).removeEventListener(e, scrolling.prevent));
+      }
+    }
+  };
+
+  function resetAnimations(anims) {
+    anims.forEach(anim => {
+      if (anim.down) anim.down.pause(0).progress(0);
+      if (anim.up) anim.up.pause(0).progress(0);
+    });
+  }
+
+  function goToSection(section, anims = [], direction) {
+    if (scrolling.enabled) { 
+      scrolling.disable();
+      gsap.to(window, {
+        scrollTo: {y: section, autoKill: false},
+        onComplete: () => {
+          scrolling.enable();
+          anims.forEach(anim => {
+            if (anim) {
+              anim.restart();
+            }
+          });
+        },
+        duration: 1,
+      });
+    }
+  }
+
+  sections.forEach((section, i) => {
+    const rightElement = section.querySelector(".right");
+    const leftElement = section.querySelector(".left");
+
+    const anims = [];
+
+    if (rightElement) {
+      const rightAnimDown = gsap.fromTo(rightElement, 
+        { yPercent: -100 }, 
+        { yPercent: 0, duration: 0.5, paused: true }
+      );
+      const rightAnimUp = gsap.fromTo(rightElement, 
+        { yPercent: 100 }, 
+        { yPercent: 0, duration: 0.5, paused: true }
+      );
+      anims.push({ down: rightAnimDown, up: rightAnimUp });
+    }
+
+    if (leftElement) {
+      const leftAnimDown = gsap.fromTo(leftElement, 
+        { yPercent: 100 }, 
+        { yPercent: 0, duration: 0.5, paused: true }
+      );
+      const leftAnimUp = gsap.fromTo(leftElement, 
+        { yPercent: -100 }, 
+        { yPercent: 0, duration: 0.5, paused: true }
+      );
+      anims.push({ down: leftAnimDown, up: leftAnimUp });
+    }
+
+    ScrollTrigger.create({
+      trigger: section,
+      start: "top bottom-=1",
+      end: "bottom top+=1",
+      onEnter: () => {
+        const direction = window.scrollY > lastScrollY ? 'down' : 'up';
+        const directionAnims = anims.map(anim => anim[direction]);
+        resetAnimations(anims); // Reset animations before starting
+        goToSection(section, directionAnims, direction);
+      },
+      onEnterBack: () => {
+        const direction = window.scrollY > lastScrollY ? 'down' : 'up';
+        const directionAnims = anims.map(anim => anim[direction]);
+        resetAnimations(anims); // Reset animations before starting
+        goToSection(section, directionAnims, direction);
+      }
+    });
+  });
+
+  // Додаємо обробник для посилань з якорями
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        scrolling.disable();
+        gsap.to(window, {
+          scrollTo: {y: targetElement, autoKill: false},
+          onComplete: scrolling.enable,
+          duration: 2
+        });
+      }
+    });
+  });
+
+  // Update the lastScrollY position
+  window.addEventListener('scroll', () => {
+    lastScrollY = window.scrollY;
+  });
 };
 
+// const firstSlider = () => {
+// 	if (WINDOWWIDTH > 640) {
+// 		console.clear();
 
-const killPreload = () =>{
+// 		gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
+// 		const sections = document.querySelectorAll(".panel");
+// 		let lastScrollY = window.scrollY;
+// 		let isScrolling = false;
+
+// 		const scrolling = {
+// 			enabled: true,
+// 			events: "scroll,wheel,touchmove,pointermove".split(","),
+// 			prevent: e => e.preventDefault(),
+// 			disable() {
+// 				if (scrolling.enabled) {
+// 					scrolling.enabled = false;
+// 					window.addEventListener("scroll", gsap.ticker.tick, { passive: true });
+// 					scrolling.events.forEach((e, i) => (i ? document : window).addEventListener(e, scrolling.prevent, { passive: false }));
+// 				}
+// 			},
+// 			enable() {
+// 				if (!scrolling.enabled) {
+// 					scrolling.enabled = true;
+// 					window.removeEventListener("scroll", gsap.ticker.tick);
+// 					scrolling.events.forEach((e, i) => (i ? document : window).removeEventListener(e, scrolling.prevent));
+// 				}
+// 			}
+// 		};
+
+// 		function resetAnimations(anims) {
+// 			anims.forEach(anim => {
+// 				if (anim.down) anim.down.pause(0).progress(0);
+// 				if (anim.up) anim.up.pause(0).progress(0);
+// 			});
+// 		}
+
+// 		function goToSection(section, anims = [], direction) {
+// 			if (scrolling.enabled && !isScrolling) {
+// 				scrolling.disable();
+// 				isScrolling = true;
+
+// 				anims.forEach(anim => {
+// 					if (anim) {
+// 						anim.restart();
+// 					}
+// 				});
+
+// 				gsap.to(window, {
+// 					scrollTo: { y: section, autoKill: false },
+// 					onComplete: () => {
+// 						scrolling.enable();
+// 						isScrolling = false;
+// 					},
+// 					duration: 1
+// 				});
+// 			}
+// 		}
+
+// 		sections.forEach((section, i) => {
+// 			const rightElement = section.querySelector(".right");
+// 			const leftElement = section.querySelector(".left");
+
+// 			const anims = [];
+
+// 			if (rightElement) {
+// 				const rightAnimDown = gsap.fromTo(rightElement,
+// 					{ yPercent: -100 , autoAlpha: 0},
+// 					{ yPercent: 0, duration: .8, paused: true, autoAlpha: 1 }
+// 				);
+// 				const rightAnimUp = gsap.fromTo(rightElement,
+// 					{ yPercent: 100, autoAlpha: 0 },
+// 					{ yPercent: 0, duration: .8, paused: true, autoAlpha: 1 }
+// 				);
+// 				anims.push({ down: rightAnimDown, up: rightAnimUp });
+// 			}
+
+// 			if (leftElement) {
+// 				const leftAnimDown = gsap.fromTo(leftElement,
+// 					{ yPercent: 100, autoAlpha: 0 },
+// 					{ yPercent: 0, duration: .8, paused: true, autoAlpha: 1 }
+// 				);
+// 				const leftAnimUp = gsap.fromTo(leftElement,
+// 					{ yPercent: -100, autoAlpha: 0 },
+// 					{ yPercent: 0, duration: .8, paused: true, autoAlpha: 1 }
+// 				);
+// 				anims.push({ down: leftAnimDown, up: leftAnimUp });
+// 			}
+
+// 			ScrollTrigger.create({
+// 				trigger: section,
+// 				// start: "top bottom-=10%",
+// 				// end: "bottom top+=1",
+// 				start: "20% bottom-=10%",
+// 				end: "80% top+=1",
+// 				markers: true,
+// 				onEnter: () => {
+// 					const direction = window.scrollY > lastScrollY ? 'down' : 'up';
+// 					const directionAnims = anims.map(anim => anim[direction]);
+// 					resetAnimations(anims);
+// 					goToSection(section, directionAnims, direction);
+// 				},
+// 				onEnterBack: () => {
+// 					const direction = window.scrollY > lastScrollY ? 'down' : 'up';
+// 					const directionAnims = anims.map(anim => anim[direction]);
+// 					resetAnimations(anims);
+// 					goToSection(section, directionAnims, direction);
+// 				}
+// 			});
+// 		});
+
+// 		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+// 			anchor.addEventListener('click', function (e) {
+// 				e.preventDefault();
+
+// 				const targetId = this.getAttribute('href').substring(1);
+// 				const targetElement = document.getElementById(targetId);
+
+// 				if (targetElement) {
+// 					scrolling.disable();
+// 					gsap.to(window, {
+// 						scrollTo: { y: targetElement, autoKill: false },
+// 						onComplete: scrolling.enable,
+// 						duration: 2
+// 					});
+// 				}
+// 			});
+// 		});
+
+// 		window.addEventListener('scroll', () => {
+// 			lastScrollY = window.scrollY;
+// 		});
+// 	}
+// }; //вроде тоже более менее
+
+
+
+
+
+
+
+// const firstSlider = () => {
+// 	if (WINDOWWIDTH > 640) {
+// 		console.clear();
+
+// 		gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+// 		const sections = document.querySelectorAll(".panel");
+// 		let lastScrollY = window.scrollY;
+// 		let isScrolling = false;
+// 		let debounceTimer;
+
+// 		const scrolling = {
+// 			enabled: true,
+// 			events: "scroll,wheel,touchmove,pointermove".split(","),
+// 			prevent: e => e.preventDefault(),
+// 			disable() {
+// 				if (scrolling.enabled) {
+// 					scrolling.enabled = false;
+// 					window.addEventListener("scroll", gsap.ticker.tick, { passive: true });
+// 					scrolling.events.forEach((e, i) => (i ? document : window).addEventListener(e, scrolling.prevent, { passive: false }));
+// 				}
+// 			},
+// 			enable() {
+// 				if (!scrolling.enabled) {
+// 					scrolling.enabled = true;
+// 					window.removeEventListener("scroll", gsap.ticker.tick);
+// 					scrolling.events.forEach((e, i) => (i ? document : window).removeEventListener(e, scrolling.prevent));
+// 				}
+// 			}
+// 		};
+
+// 		function resetAnimations(anims) {
+// 			anims.forEach(anim => {
+// 				if (anim.down) anim.down.pause(0).progress(0);
+// 				if (anim.up) anim.up.pause(0).progress(0);
+// 			});
+// 		}
+
+// 		function goToSection(section, anims = [], direction) {
+// 			if (scrolling.enabled && !isScrolling) {
+// 				scrolling.disable();
+// 				isScrolling = true;
+
+// 				anims.forEach(anim => {
+// 					if (anim) {
+// 						anim.restart();
+// 					}
+// 				});
+
+// 				gsap.to(window, {
+// 					scrollTo: { y: section, autoKill: false },
+// 					onComplete: () => {
+// 						scrolling.enable();
+// 						isScrolling = false;
+// 					},
+// 					duration: 2
+// 				});
+// 			}
+// 		}
+
+// 		function handleScroll() {
+// 			clearTimeout(debounceTimer);
+// 			debounceTimer = setTimeout(() => {
+// 				lastScrollY = window.scrollY;
+// 			}, 100);
+// 		}
+
+// 		sections.forEach((section, i) => {
+// 			const rightElement = section.querySelector(".right");
+// 			const leftElement = section.querySelector(".left");
+
+// 			const anims = [];
+
+// 			if (rightElement) {
+// 				const rightAnimDown = gsap.fromTo(rightElement,
+// 					{ yPercent: -100, autoAlpha: 0 },
+// 					{ yPercent: 0, duration: 1.5, paused: true, autoAlpha: 1 }
+// 				);
+// 				const rightAnimUp = gsap.fromTo(rightElement,
+// 					{ yPercent: 100, autoAlpha: 0 },
+// 					{ yPercent: 0, duration: 1.5, paused: true, autoAlpha: 1 }
+// 				);
+// 				anims.push({ down: rightAnimDown, up: rightAnimUp });
+// 			}
+
+// 			if (leftElement) {
+// 				const leftAnimDown = gsap.fromTo(leftElement,
+// 					{ yPercent: 100, autoAlpha: 0 },
+// 					{ yPercent: 0, duration: 1.5, paused: true, autoAlpha: 1 }
+// 				);
+// 				const leftAnimUp = gsap.fromTo(leftElement,
+// 					{ yPercent: -100, autoAlpha: 0 },
+// 					{ yPercent: 0, duration: 1.5, paused: true, autoAlpha: 1 }
+// 				);
+// 				anims.push({ down: leftAnimDown, up: leftAnimUp });
+// 			}
+
+// 			ScrollTrigger.create({
+// 				trigger: section,
+// 				start: i === 0 ? "top top+=50" : "top bottom-=1", // Додатковий простір для першого слайда
+// 				end: "bottom top+=1",
+// 				onEnter: () => {
+// 					const direction = window.scrollY > lastScrollY ? 'down' : 'up';
+// 					const directionAnims = anims.map(anim => anim[direction]);
+// 					resetAnimations(anims);
+// 					goToSection(section, directionAnims, direction);
+// 				},
+// 				onEnterBack: () => {
+// 					const direction = window.scrollY > lastScrollY ? 'down' : 'up';
+// 					const directionAnims = anims.map(anim => anim[direction]);
+// 					resetAnimations(anims);
+// 					goToSection(section, directionAnims, direction);
+// 				}
+// 			});
+// 		});
+
+// 		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+// 			anchor.addEventListener('click', function (e) {
+// 				e.preventDefault();
+
+// 				const targetId = this.getAttribute('href').substring(1);
+// 				const targetElement = document.getElementById(targetId);
+
+// 				if (targetElement) {
+// 					scrolling.disable();
+// 					gsap.to(window, {
+// 						scrollTo: { y: targetElement, autoKill: false },
+// 						onComplete: scrolling.enable,
+// 						duration: 2
+// 					});
+// 				}
+// 			});
+// 		});
+
+// 		window.addEventListener('scroll', handleScroll);
+// 	}
+// }; //блимає але працює
+
+
+
+const killPreload = () => {
 	const preloadWrap = document.querySelector('.preload');
-	if(preloadWrap){
+	if (preloadWrap) {
 		const logoWrap = document.querySelector('.animate-logo');
 		const animeCircle = document.querySelector('.anime-circle');
-		const animeCirclePath = animeCircle.querySelector('path');
-		preloadWrap.addEventListener('click', ()=>{
+
+		const handlePreloadRemoval = () => {
 			preloadWrap.classList.add('remove');
-			HMTLELEMENT.classList.add('addscroll');
-		function animateCharacters(){
+			document.documentElement.classList.add('addscroll');
 			logoWrap.classList.add('animate');
+			setTimeout(() => BURGER.style.animationName = 'burgerOpacity', 1500);
+			setTimeout(() => preloadWrap.style.display = "none", 1000);
+		};
+
+		// Handle click event for both large and small screens
+		preloadWrap.addEventListener('click', handlePreloadRemoval);
+
+		if (window.innerWidth <= 767) { // For mobile devices
+			const switchElement = document.querySelector('.preload-switch');
+			const circleElement = document.querySelector('.white-circle');
+			let startX = 0;
+			let currentX = 0;
+			let isSwiping = false;
+			const switchWidth = switchElement.offsetWidth;
+			const circleWidth = circleElement.offsetWidth;
+
+			const handleTouchStart = (event) => {
+				startX = event.touches[0].clientX;
+				isSwiping = true;
+			};
+
+			const handleTouchMove = (event) => {
+				if (!isSwiping) return;
+				currentX = event.touches[0].clientX;
+				const deltaX = currentX - startX;
+				const newLeft = Math.min(Math.max(0, deltaX), switchWidth - circleWidth);
+				circleElement.style.transform = `translateX(${newLeft}px)`;
+			};
+
+			const handleTouchEnd = () => {
+				if (!isSwiping) return;
+				isSwiping = false;
+				if (currentX - startX > switchWidth / 2) {
+					handlePreloadRemoval();
+				} else {
+					circleElement.style.transform = `translateX(0px)`;
+				}
+			};
+
+			switchElement.addEventListener('touchstart', handleTouchStart);
+			switchElement.addEventListener('touchmove', handleTouchMove);
+			switchElement.addEventListener('touchend', handleTouchEnd);
 		}
-		setTimeout(() => animateCharacters(), 350);
-		setTimeout(() => BURGER.style.animationName = 'burgerOpacity', 1500);
-		setTimeout(() => preloadWrap.style.display = "none", 1000);
-	});
-}
-}
+	}
+};
+
+// const killPreload = () => {
+// 	const preloadWrap = document.querySelector('.preload');
+// 	if (preloadWrap) {
+// 			const logoWrap = document.querySelector('.animate-logo');
+// 			const animeCircle = document.querySelector('.anime-circle');
+
+// 			const handleLargeScreenClick = () => {
+// 					preloadWrap.classList.add('remove');
+// 					document.documentElement.classList.add('addscroll');
+// 					logoWrap.classList.add('animate');
+// 					setTimeout(() => BURGER.style.animationName = 'burgerOpacity', 1500);
+// 					setTimeout(() => preloadWrap.style.display = "none", 1000);
+// 			};
+
+// 			const handleSmallScreenTouch = () => {
+// 					document.querySelector('html').classList.add('preloader');
+// 					const switchElement = document.querySelector('.preload-switch');
+// 					const circleElement = document.querySelector('.white-circle');
+// 					let startX = 0;
+// 					let currentX = 0;
+// 					let isSwiping = false;
+// 					const switchWidth = switchElement.offsetWidth;
+// 					const circleWidth = circleElement.offsetWidth;
+
+// 					const handleTouchStart = (event) => {
+// 							startX = event.touches[0].clientX;
+// 							isSwiping = true;
+// 					};
+
+// 					const handleTouchMove = (event) => {
+// 							if (!isSwiping) return;
+// 							currentX = event.touches[0].clientX;
+// 							const deltaX = currentX - startX;
+// 							const newLeft = Math.min(Math.max(0, deltaX), switchWidth - circleWidth);
+// 							circleElement.style.transform = `translateX(${newLeft}px)`;
+// 					};
+
+// 					const handleTouchEnd = () => {
+// 							if (!isSwiping) return;
+// 							isSwiping = false;
+// 							if (currentX - startX > switchWidth / 2) {
+// 									preloadWrap.classList.add('remove');
+// 									document.documentElement.classList.add('addscroll');
+// 									logoWrap.classList.add('animate');
+// 									setTimeout(() => BURGER.style.animationName = 'burgerOpacity', 1500);
+// 									setTimeout(() => preloadWrap.style.display = "none", 1000);
+// 							} else {
+// 									circleElement.style.transform = `translateX(0px)`;
+// 							}
+// 					};
+
+// 					switchElement.addEventListener('touchstart', handleTouchStart);
+// 					switchElement.addEventListener('touchmove', handleTouchMove);
+// 					switchElement.addEventListener('touchend', handleTouchEnd);
+// 			};
+
+// 			if (window.innerWidth > 767) {
+// 					preloadWrap.addEventListener('click', handleLargeScreenClick);
+// 			} else {
+// 					handleSmallScreenTouch();
+// 			}
+// 	}
+// };
+
+
 const heightSwitch = () =>{
 	const whiteCircle = document.querySelector('.white-circle');
 	if(!whiteCircle) return;
 		const svgWhiteCircle = document.querySelector('.anime-circle');
 	const svgWhiteCircleWidth = svgWhiteCircle.getBoundingClientRect().width;
-    if (WINDOWWIDTH <= 640) {
+    if (WINDOWWIDTH <= 768) {
 			whiteCircle.style.width = `${svgWhiteCircleWidth}px`;
 		}
 }
